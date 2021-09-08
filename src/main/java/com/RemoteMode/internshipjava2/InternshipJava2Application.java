@@ -11,10 +11,10 @@ public class InternshipJava2Application {
 		SpringApplication.run(InternshipJava2Application.class, args);
 	}
 
-	@GetMapping("/hello")
-	public String hello() {
-		return String.format("Hello world");
-	}
+//	@GetMapping("/hello")
+//	public String hello() {
+//		return String.format("Hello world");
+//	}
 //	athena
 	//5432
 
