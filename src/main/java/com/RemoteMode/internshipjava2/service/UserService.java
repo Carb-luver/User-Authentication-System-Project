@@ -1,6 +1,6 @@
 package com.RemoteMode.internshipjava2.service;
 
-import com.RemoteMode.internshipjava2.controller.UserRepository;
+import com.RemoteMode.internshipjava2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

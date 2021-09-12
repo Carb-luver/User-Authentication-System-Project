@@ -9,8 +9,18 @@ public class AuthHelper {
         if (userRequest.getRole() == null || userRequest.getEmail() == null || userRequest.getFirstName() == null || userRequest.getLastName() == null || userRequest.getLogin() == null || userRequest.getPassword() == null) {
             throw new BadRequestException();
         }
-        if (userRequest.getRole().toString()==" " || userRequest.getEmail().toString()==" " || userRequest.toString()==" " || userRequest.getLastName().toString()==" " || userRequest.getLogin().toString()==" " || userRequest.getPassword().toString()==" ") {
+        if (userRequest.getRole().toString() == " " || userRequest.getEmail().toString() == " " || userRequest.toString()==" " || userRequest.getLastName().toString()==" " || userRequest.getLogin().toString()==" " || userRequest.getPassword().toString()==" ") {
             throw new BadRequestException();
         }
     }
+
+    public void loginNullCheck(String login, String password) {
+        if (login == null || password == null) {
+            throw new BadRequestException();
+        }
+        if (login ==" " || password ==" ") {
+            throw new BadRequestException();
+        }
+    }
+
 }

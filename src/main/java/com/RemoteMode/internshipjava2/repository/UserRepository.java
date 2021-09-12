@@ -1,4 +1,4 @@
-package com.RemoteMode.internshipjava2.controller;
+package com.RemoteMode.internshipjava2.repository;
 
 import com.RemoteMode.internshipjava2.model.UserEntity;
 import com.RemoteMode.internshipjava2.model.UserRole;
@@ -17,4 +17,8 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     public UserEntity findByEmail(@Param("email") String email);
 
+    public UserEntity findByLogin(@Param("login") String login);
+
+    @Override
+    public UserEntity save(UserEntity userEntity);
 }

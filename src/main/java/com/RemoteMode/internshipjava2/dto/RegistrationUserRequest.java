@@ -27,8 +27,6 @@ public class RegistrationUserRequest {
     @Getter
     UserRole role;
 
-    @Getter
-    UserEntity userEntity;
 
 
 }
