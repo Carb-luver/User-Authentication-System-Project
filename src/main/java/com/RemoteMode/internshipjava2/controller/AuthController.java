@@ -2,12 +2,15 @@ package com.RemoteMode.internshipjava2.controller;
 
 import com.RemoteMode.internshipjava2.dto.LoginUserRequest;
 import com.RemoteMode.internshipjava2.dto.RegistrationUserRequest;
-import com.RemoteMode.internshipjava2.model.UserEntity;
+import com.RemoteMode.internshipjava2.jwt.JwtFilter;
 import com.RemoteMode.internshipjava2.service.*;
 import com.RemoteMode.internshipjava2.util.AuthHelper;
 import com.RemoteMode.internshipjava2.util.UserAdapter;
-import org.apache.catalina.User;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/auth")
@@ -17,6 +20,7 @@ public class AuthController {
     AuthHelper authHelper;
     UserAdapter userAdapter;
     LoginUserRequest loginUserRequest;
+    JwtFilter jwtFilter;
 
     public AuthController(AuthorizationService authorizationService) {
         this.authorizationService = authorizationService;
@@ -39,4 +43,12 @@ public class AuthController {
         authHelper.loginNullCheck(login, password);
         authorizationService.login(loginUserRequest);
     }
+
+    @GetMapping("/logout")
+    public void logout(HttpServletRequest httpServletRequest, ServletResponse servletResponse) throws Exception {
+        ServletRequest servletRequest = (ServletRequest)httpServletRequest;
+        jwtFilter.logout(servletRequest, servletResponse);
+
+    }
+
 }

@@ -1,13 +1,19 @@
 package com.RemoteMode.internshipjava2.controller;
 
 import com.RemoteMode.internshipjava2.exception.BadRequestException;
+import com.RemoteMode.internshipjava2.jwt.JwtFilter;
+import com.RemoteMode.internshipjava2.model.JwtUser;
 import com.RemoteMode.internshipjava2.model.UserEntity;
+import com.RemoteMode.internshipjava2.model.UserRole;
 import com.RemoteMode.internshipjava2.repository.UserRepository;
 import com.RemoteMode.internshipjava2.service.UserService;
-import org.apache.catalina.User;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/user")
@@ -15,6 +21,9 @@ public class UserController {
 
     UserService userService;
     UserRepository userRepository;
+    UserEntity userEntity;
+
+    private static final Logger logger = Logger.getLogger(UserController.class.getName());
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -35,7 +44,11 @@ public class UserController {
 
     @PostMapping(value = "/all")
     public List<UserEntity> getUsers(){
-        return userRepository.findAll();
+        if(this.userEntity.getRole() == UserRole.ADMIN)
+            return userRepository.findAll();
+        else
+            logger.log(Level.INFO, "Admin access only.");
+            return null;
     }
 
 }

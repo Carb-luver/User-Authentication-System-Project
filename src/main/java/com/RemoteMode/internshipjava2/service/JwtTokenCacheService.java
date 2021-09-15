@@ -1,10 +1,8 @@
 package com.RemoteMode.internshipjava2.service;
 
+import com.RemoteMode.internshipjava2.jwt.JwtProvider;
 import com.RemoteMode.internshipjava2.model.JwtUser;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import jwt.JwtFilter;
-import jwt.JwtProvider;
-
 import javax.servlet.ServletResponse;
 import java.util.Map;
 import java.util.logging.Level;
@@ -23,8 +21,11 @@ public class JwtTokenCacheService {
         return jwtToken;
     }
 
-    public void removeToken(JwtUser jwtUser){
-
+    public void removeToken(String jwtToken){
+        if(jwtTokenCache.containsKey(jwtToken))
+            jwtTokenCache.remove(jwtToken);
+        else
+            logger.log(Level.INFO, "Logout unsuccessful.");
     }
 
     public JwtUser getJwtTokenCache(String jwtToken) {
@@ -32,6 +33,6 @@ public class JwtTokenCacheService {
             return jwtTokenCache.get(jwtToken);
         else
             logger.log(Level.INFO, "Jwt Token lookup unsuccessful.");
-        return null;
+            return null;
     }
 }
