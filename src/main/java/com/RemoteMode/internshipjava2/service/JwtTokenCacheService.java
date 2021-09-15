@@ -2,8 +2,7 @@ package com.RemoteMode.internshipjava2.service;
 
 import com.RemoteMode.internshipjava2.model.JwtUser;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import jwt.JwtFilter;
-import jwt.JwtProvider;
+import com.RemoteMode.internshipjava2.jwt.*;
 
 import javax.servlet.ServletResponse;
 import java.util.Map;
