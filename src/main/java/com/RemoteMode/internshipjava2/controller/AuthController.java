@@ -32,8 +32,8 @@ public class AuthController {
         authHelper.nullCheck(userRequest);
     }
 
-    @RequestMapping("/login")
-    public void post(LoginUserRequest loginUserRequest){
+    @PostMapping("/login")
+    public void post(LoginUserRequest loginUserRequest) throws Exception {
         String login = loginUserRequest.getLogin();
         String password = loginUserRequest.getPassword();
         authHelper.loginNullCheck(login, password);

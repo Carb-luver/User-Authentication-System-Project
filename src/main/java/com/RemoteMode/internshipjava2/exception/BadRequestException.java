@@ -8,7 +8,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)
 public class BadRequestException extends RuntimeException{
 
-    public String BadRequestException() {
-        return String.format("Every field of the User Entity needs an input.");
+    //String errorMessage;
+
+    public BadRequestException(String errorMessage, Throwable e) {
+        super(errorMessage, e);
+    }
+
+    public BadRequestException(String errorMessage) {
+        super(errorMessage);
     }
 }

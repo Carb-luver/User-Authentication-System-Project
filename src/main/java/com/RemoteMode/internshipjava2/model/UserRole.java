@@ -5,10 +5,6 @@ public enum UserRole {
     USER;
 
     UserRole() {
-
     }
-
-
-
 
 }
