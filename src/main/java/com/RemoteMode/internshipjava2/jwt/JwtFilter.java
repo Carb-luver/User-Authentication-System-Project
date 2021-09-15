@@ -51,10 +51,11 @@ public class JwtFilter extends GenericFilterBean {
     public void logout(ServletRequest servletRequest, ServletResponse servletResponse) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         String authorizationHeader = httpServletRequest.getHeader("AuthorizationHeader");
-        if(httpServletRequest.getQueryString() == null)
+        if(httpServletRequest.getQueryString() == null) {
             url = httpServletRequest.getRequestURL().toString();
-        else
+        }else {
             url = httpServletRequest.getRequestURL().append(httpServletRequest.getQueryString()).toString();
+        }
         if(url.contains("/user") && url.contains("/logout")){
             if (checkAuthorizationHeader(authorizationHeader, servletResponse)) {
                 jwtToken = authorizationHeader.replace("Bearer ","");
@@ -64,7 +65,11 @@ public class JwtFilter extends GenericFilterBean {
         }else {
             logger.log(Level.WARNING, "Error found; user is not valid.");
         }
-        jwtTokenCacheService.removeToken(jwtToken);
+        if(checkIfJwtTokenIsPresentInCache(jwtToken, servletResponse) != null) {
+            jwtTokenCacheService.removeToken(jwtToken);
+        }else {
+            logger.log(Level.WARNING, "Error found; token is not present in cache.");
+        }
     }
 
     public boolean checkAuthorizationHeader(String authorizationHeader, ServletResponse servletResponse) throws IOException {

@@ -48,7 +48,6 @@ public class AuthController {
     public void logout(HttpServletRequest httpServletRequest, ServletResponse servletResponse) throws Exception {
         ServletRequest servletRequest = (ServletRequest)httpServletRequest;
         jwtFilter.logout(servletRequest, servletResponse);
-
     }
 
 }
