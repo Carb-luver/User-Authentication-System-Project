@@ -1,18 +1,17 @@
 package com.RemoteMode.internshipjava2.service;
 
 import com.RemoteMode.internshipjava2.exception.BadRequestException;
+import com.RemoteMode.internshipjava2.jwt.JwtProvider;
 import com.RemoteMode.internshipjava2.model.JwtUser;
 import com.RemoteMode.internshipjava2.repository.UserRepository;
 import com.RemoteMode.internshipjava2.dto.LoginUserRequest;
 import com.RemoteMode.internshipjava2.dto.RegistrationUserRequest;
 import com.RemoteMode.internshipjava2.model.UserEntity;
 import com.RemoteMode.internshipjava2.util.UserAdapter;
-import jwt.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional

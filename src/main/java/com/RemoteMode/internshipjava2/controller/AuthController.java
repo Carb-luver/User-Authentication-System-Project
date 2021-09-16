@@ -7,7 +7,6 @@ import com.RemoteMode.internshipjava2.service.*;
 import com.RemoteMode.internshipjava2.util.AuthHelper;
 import com.RemoteMode.internshipjava2.util.UserAdapter;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
