@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 @Service
 public class MarketDataService {
@@ -26,6 +27,7 @@ public class MarketDataService {
     ArrayList<RateInfo> listRateInfo;
     RateCache rateCache;
     Iterator<Rate> iterator;
+    Logger logger;
 
     public MarketDataService(MarketDataClient marketDataClient) {
         this.marketDataClient = marketDataClient;
@@ -52,10 +54,14 @@ public class MarketDataService {
                 listRateInfo.add(rateInfo);
             }
         }
+        if(listRateInfo != null)
+            logger.fine("Retrieved rates successfully.");
         return listRateInfo;
     }
 
     public List<Rate> getRates(){
+        if(marketDataClient.getRates() != null)
+            logger.fine("Retrieved rates successfully.");
         return marketDataClient.getRates();
     }
 
