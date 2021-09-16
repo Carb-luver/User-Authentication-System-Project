@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
@@ -55,13 +56,17 @@ public class MarketDataService {
             }
         }
         if(listRateInfo != null)
-            logger.fine("Retrieved rates successfully.");
+            logger.fine("Retrieved rates from coingecko successfuly.");
+        else
+            logger.log(Level.INFO, "Retrieved rates from coingecko unsuccessfuly.");
         return listRateInfo;
     }
 
     public List<Rate> getRates(){
-        if(marketDataClient.getRates() != null)
-            logger.fine("Retrieved rates successfully.");
+        if(listRateInfo != null)
+            logger.fine("Retrieved rates from coingecko successfuly.");
+        else
+            logger.log(Level.INFO, "Retrieved rates from coingecko unsuccessfuly.");
         return marketDataClient.getRates();
     }
 
