@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
-public class rateController {
+public class RateController {
 
     MarketDataService marketDataService;
 
-    public rateController(MarketDataService marketDataService) {
+    public RateController(MarketDataService marketDataService) {
         this.marketDataService = marketDataService;
     }
 
