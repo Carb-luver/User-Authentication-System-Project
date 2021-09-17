@@ -48,6 +48,7 @@
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
@@ -68,28 +69,35 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
-			<systemPath>${project.basedir}/lib/spring-cloud-starter-openfeign-3.0.3.jar</systemPath>
+			<version>3.0.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+			<version>2.4.11-SNAPSHOT</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>5.3.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>5.2.0.M2</version>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>io.jsonwebtoken</groupId>
-				<artifactId>jjwt</artifactId>
-				<version>0.9.1</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-openfeign</artifactId>
-				<version>3.0.3</version>
-			</dependency>
+<!--			<dependency>-->
+<!--				<groupId>org.springframework.cloud</groupId>-->
+<!--				<artifactId>spring-cloud-dependencies</artifactId>-->
+<!--				<version>${spring-cloud.version}</version>-->
+<!--				<type>pom</type>-->
+<!--				<scope>import</scope>-->
+<!--			</dependency>-->
 		</dependencies>
 	</dependencyManagement>
 

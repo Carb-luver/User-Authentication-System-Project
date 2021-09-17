@@ -4,8 +4,11 @@ import com.RemoteMode.internshipjava2.model.Rate;
 import com.RemoteMode.internshipjava2.model.RateInfo;
 import com.RemoteMode.internshipjava2.service.MarketDataClient;
 import lombok.Getter;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -17,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service
+@EnableScheduling
 public class MarketDataService {
 
     MarketDataClient marketDataClient;
@@ -29,9 +33,14 @@ public class MarketDataService {
     RateCache rateCache;
     Iterator<Rate> iterator;
     Logger logger;
+    SimpMessagingTemplate simpMessagingTemplate;
 
     public MarketDataService(MarketDataClient marketDataClient) {
         this.marketDataClient = marketDataClient;
+    }
+
+    public MarketDataService(SimpMessagingTemplate simpMessagingTemplate) {
+        this.simpMessagingTemplate = simpMessagingTemplate;
     }
 
     public ArrayList<RateInfo> getRateInfo() throws IOException {
@@ -70,5 +79,8 @@ public class MarketDataService {
         return marketDataClient.getRates();
     }
 
-
+    @Scheduled(fixedDelay = 5000)
+    public void getRatesUpdates() throws IOException {
+        simpMessagingTemplate.convertAndSend(getRateInfo().toString(), "/topic/updateRates");
+    }
 }
