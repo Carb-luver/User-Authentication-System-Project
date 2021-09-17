@@ -6,6 +6,7 @@ import com.RemoteMode.internshipjava2.service.MarketDataClient;
 import lombok.Getter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -80,7 +81,8 @@ public class MarketDataService {
     }
 
     @Scheduled(fixedDelay = 5000)
+    @SubscribeMapping("/topic/updateRates")
     public void getRatesUpdates() throws IOException {
-        simpMessagingTemplate.convertAndSend(getRateInfo().toString(), "/topic/updateRates");
+        simpMessagingTemplate.convertAndSend("/topic/updateRates", getRateInfo());
     }
 }
